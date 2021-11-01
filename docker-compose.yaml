@@ -1,0 +1,43 @@
+version: "3.9" # optional since v1.27.0
+# matmark.ddns.net:11111
+# GRANT REPLICATION SLAVE ON *.* TO replicant@'%' IDENTIFIED BY 'pass';
+# SHOW MASTER STATUS;
+# FLUSH PRIVILEGES;
+# CHANGE MASTER TO master_host="matmark.ddns.net",master_port=11111,master_user="replicant",master_password="pass",master_log_file="mysql-bin.000003",master_log_pos=594;
+# START SLAVE;
+# SHOW SLAVE STATUS \G;
+services:
+
+  rsbd1:
+    build:
+      context: .
+      args:
+        server_id: 11111
+    ports:
+      - "11111:3306"
+    volumes:
+    - db1:/var/lib/mysql
+
+  rsbd2:
+    build:
+      context: .
+      args:
+        server_id: 22222
+    ports:
+      - "22222:3306"
+    volumes:
+    - db2:/var/lib/mysql
+
+  rsbd3:
+    build:
+      context: .
+      args:
+        server_id: 33333
+    ports:
+      - "33333:3306"
+    volumes:
+    - db3:/var/lib/mysql
+volumes:
+  db1:
+  db2:
+  db3:
