@@ -2,9 +2,9 @@ FROM mysql:5.7
 
 ARG server_id
 
-ENV MYSQL_ROOT_PASSWORD=$server_id
-ENV MYSQL_USER=$server_id
-ENV MYSQL_PASSWORD=$server_id
+ENV MYSQL_ROOT_PASSWORD="ROOT"
+ENV MYSQL_USER="TEST"
+ENV MYSQL_PASSWORD="TEST"
 ENV MYSQL_DATABASE="TEST"
 
 RUN touch /etc/mysql/conf.d/my.cnf
